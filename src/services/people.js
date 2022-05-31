@@ -46,7 +46,6 @@ const createPeople = async (Item) => {
       })
       .promise()
   } catch (err) {
-    console.log('Error inesperado con la base de datos - createPeople', err)
     throw new Error('Error inesperado con la base de datos - createPeople')
   }
 }

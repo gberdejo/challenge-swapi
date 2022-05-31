@@ -1,5 +1,4 @@
 const { default: axios } = require('axios')
-const Joi = require('joi')
 const { customAlphabet } = require('nanoid')
 
 const call = async ({ url, data, method }) => {

@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon ./node_modules/.bin/serverless offline start"
+    "start": "nodemon ./node_modules/.bin/serverless offline start",
+    "test": "jest --detectOpenHandles --forceExit --verbose"
   },
   "dependencies": {
     "aws-sdk": "^2.1084.0",
@@ -13,6 +14,7 @@
     "jest": "^27.5.1",
     "nodemon": "^2.0.16",
     "serverless-dynamodb-local": "^0.2.40",
-    "serverless-offline": "^8.5.0"
+    "serverless-offline": "^8.5.0",
+    "supertest": "^6.2.3"
   }
 }

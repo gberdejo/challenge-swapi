@@ -1,6 +1,5 @@
 'use strict'
 
-const { nanoid } = require('../../utils')
 const { response } = require('../../helpers/functions')
 const { STATUS } = require('../../helpers/constans')
 const AWS = require('aws-sdk')

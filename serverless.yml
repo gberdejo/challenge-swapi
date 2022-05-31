@@ -22,7 +22,6 @@ provider:
             - arn:aws:dynamodb:ddblocal:000000000000:table/StarWars
   environment:
     API_SWAPI: https://swapi.dev/api
-    API_URI: http://localhost:3000
     NODE_ENV: ${opt:stage, self:custom.defaultStage} 
 
 functions:

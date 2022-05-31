@@ -1,11 +1,7 @@
 'use strict'
 
-const { nanoid } = require('../../utils')
 const { response } = require('../../helpers/functions')
 const { STATUS } = require('../../helpers/constans')
-const AWS = require('aws-sdk')
-const PeopleProvider = require('../../providers')
-const { People, PeopleEsToEn } = require('../../models/people')
 const PeopleService = require('../../services/people')
 
 module.exports.get = async (event) => {
