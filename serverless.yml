@@ -1,0 +1,71 @@
+service: server-gabriel
+frameworkVersion: '3'
+
+custom:
+  defaultStage: dev
+  profiles:
+    dev: reto-dev
+    prod: reto-prod
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${self:custom.profiles.${self:provider.stage}}
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - dynamodb:*
+          Resource:
+            - arn:aws:dynamodb:ddblocal:000000000000:table/StarWars
+  environment:
+    API_SWAPI: https://swapi.dev/api
+    API_URI: http://localhost:3000
+    NODE_ENV: ${opt:stage, self:custom.defaultStage} 
+
+functions:
+  findOnePeople:
+    handler: src/controllers/people/findOne.get
+    events:
+      - httpApi:
+          path: /people/{sku}
+          method: get
+  findOnePeopleLegacy:
+    handler: src/controllers/people/findOneLegacy.get
+    events:
+      - httpApi:
+          path: /people/legacy/{id}
+          method: get
+  findAllPeople:
+    handler: src/controllers/people/findAll.get
+    events:
+      - httpApi:
+          path: /people
+          method: get
+  createPeople:
+    handler: src/controllers/people/create.post
+    events:
+      - httpApi:
+          path: /people
+          method: post
+
+resources:
+  Resources:
+    StarWars:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: StarWars
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: sku
+            AttributeType: S
+        KeySchema:
+          - AttributeName: sku
+            KeyType: HASH
+
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
