@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon ./node_modules/.bin/serverless offline start",
+    "dev": "nodemon ./node_modules/.bin/serverless offline --stage dev",
     "test": "jest --detectOpenHandles --forceExit --verbose"
   },
   "dependencies": {

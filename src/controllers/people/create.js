@@ -22,6 +22,6 @@ module.exports.post = async (event) => {
     if (err.details) {
       return response(STATUS.BAD_REQUEST, err.details)
     }
-    return response(STATUS.INTERNAL_SERVER_ERROR, err.details)
+    return response(STATUS.INTERNAL_SERVER_ERROR, err.message)
   }
 }
